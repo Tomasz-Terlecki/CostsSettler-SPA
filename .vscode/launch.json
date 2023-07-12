@@ -8,7 +8,7 @@
             "name": "Launch Chrome against localhost",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:4200",
+            "url": "http://costssettler.com:4200",
             "webRoot": "${workspaceFolder}"
         }
     ]
