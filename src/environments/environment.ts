@@ -1,7 +1,7 @@
 export const environment = {
   name: 'dev',
   keycloakConfig: {
-    url: 'http://costssettler:8080/',
+    url: 'http://costssettler.com:8080/',
     realm: 'CostsSettler',
     clientId: 'CostsSettler-Frontend'
   },
