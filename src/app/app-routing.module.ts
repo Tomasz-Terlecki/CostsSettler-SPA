@@ -7,9 +7,18 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    component: ChargeListComponent,
-    children: []
-  }
+    children: [
+      {
+        path: 'charges',
+        component: ChargeListComponent,
+        canActivate: [AuthGuard]
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: 'charges'
+  },
 ];
 
 @NgModule({
