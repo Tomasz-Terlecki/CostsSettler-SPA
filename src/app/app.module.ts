@@ -8,6 +8,8 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { environment } from 'src/environments/environment';
 import { ChargeComponent } from './components/charges/charge/charge.component';
 import { ChargeListComponent } from './components/charges/charge-list/charge-list.component';
+import { AuthService } from './services/auth.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -29,7 +31,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
   declarations: [
     AppComponent,
     ChargeComponent,
-    ChargeListComponent
+    ChargeListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     KeycloakAngularModule
   ],
   providers: [
+    AuthService,
     AuthGuard,
     {
       provide: APP_INITIALIZER,
