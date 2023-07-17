@@ -1,9 +1,9 @@
 import { KeycloakTokenParsed } from "keycloak-js";
 import { Charge } from "./charge.model";
 import { appId } from "../constants/user.constants";
+import { BaseModel } from "./base.model";
 
-export class User {
-  id: string;
+export class User extends BaseModel {
   username: string;
   firstName: string;
   lastName: string;
@@ -11,7 +11,7 @@ export class User {
   charges: Array<Charge> | undefined;
   
   constructor() {
-    this.id = ''  ;
+    super();
     this.username = '';
     this.firstName = '';
     this.lastName = '';

@@ -1,9 +1,9 @@
 import { CircumstanceStatus } from "../enums/circumstance.status";
+import { BaseModel } from "./base.model";
 import { Charge } from "./charge.model";
 import { User } from "./user.model";
 
-export class Circumstance {
-  id: string;
+export class Circumstance extends BaseModel{
   description: string;
   totalAmount: number;
   charges: Array<Charge> | undefined;
@@ -12,7 +12,7 @@ export class Circumstance {
   creditor: User | undefined;
   
   constructor() {
-    this.id = '';
+    super();
     this.description = '';
     this.totalAmount = 0;
     this.circumstanceStatus = CircumstanceStatus.None;

@@ -1,9 +1,9 @@
 import { ChargeStatus } from "../enums/charge-status.enum";
+import { BaseModel } from "./base.model";
 import { Circumstance } from "./circumstance.model";
 import { User } from "./user.model";
 
-export class Charge {
-  id: string;
+export class Charge extends BaseModel {
   creditor: User | undefined;
   creditorId: string;
   debtor: User | undefined;
@@ -14,7 +14,7 @@ export class Charge {
   chargeStatus: ChargeStatus;
 
   constructor () {
-    this.id = '';
+    super();
     this.creditorId = '';
     this.debtorId = '';
     this.circumstanceId = '';
