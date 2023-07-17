@@ -10,6 +10,7 @@ import { ChargeComponent } from './components/charges/charge/charge.component';
 import { ChargeListComponent } from './components/charges/charge-list/charge-list.component';
 import { AuthService } from './services/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ChargesService } from './services/charges.service';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -41,6 +42,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   ],
   providers: [
     AuthService,
+    ChargesService,
     AuthGuard,
     {
       provide: APP_INITIALIZER,
