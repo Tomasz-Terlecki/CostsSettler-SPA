@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ChargeForListDto } from 'src/app/models/dtos/charge-for-list.dto';
 
 @Component({
   selector: 'app-charge',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charge.component.scss']
 })
 export class ChargeComponent implements OnInit {
+  @Input() charge: ChargeForListDto | undefined;
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    console.log(this.charge);
   }
 
 }
