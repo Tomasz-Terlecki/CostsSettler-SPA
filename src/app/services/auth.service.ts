@@ -14,6 +14,10 @@ export class AuthService {
     return this.keycloakService.getKeycloakInstance().authenticated;
   }
 
+  get token(): string | undefined {
+    return this.keycloakService.getKeycloakInstance().token;
+  }
+
   get currentUser(): User | undefined{
     var currentUserString = localStorage.getItem(currentUser);
 
