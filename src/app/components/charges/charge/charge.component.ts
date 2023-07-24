@@ -6,11 +6,6 @@ import { ChargeForListDto } from 'src/app/models/dtos/charge-for-list.dto';
   templateUrl: './charge.component.html',
   styleUrls: ['./charge.component.scss']
 })
-export class ChargeComponent implements OnInit {
+export class ChargeComponent {
   @Input() charge: ChargeForListDto | undefined;
-
-  ngOnInit(): void {
-    console.log(this.charge);
-  }
-
 }
