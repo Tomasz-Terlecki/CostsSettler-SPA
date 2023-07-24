@@ -19,8 +19,9 @@
         </p>
       </div>
       <div class="container action-buttons-container clearfix col align-self-end">
-        <a href="#" class="btn btn-primary float-right action-button">Go somewhere</a>
-        <a href="#" class="btn btn-primary float-right action-button">Go somewhere</a>
+        <a *ngIf="isSettleEnabled()" href="#" class="btn btn-success float-right action-button">Settle</a>
+        <a *ngIf="isVoteEnabled()" href="" class="btn btn-success float-right action-button">Accept</a>
+        <a *ngIf="isVoteEnabled()" href="#" class="btn btn-danger float-right action-button">Reject</a>
       </div>
     </div>
   </div>

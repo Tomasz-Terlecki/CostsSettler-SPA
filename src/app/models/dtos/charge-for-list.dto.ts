@@ -1,5 +1,6 @@
 import { ChargeStatus } from "src/app/enums/charge-status.enum";
 import { User } from "../user.model";
+import { CircumstanceStatus } from "src/app/enums/circumstance.status";
 
 export class ChargeForListDto {
   creditor: User | undefined;
@@ -10,6 +11,7 @@ export class ChargeForListDto {
   circumstanceId: string;
   amount: number;
   chargeStatus: ChargeStatus;
+  circumstanceStatus: CircumstanceStatus;
   dateTime: Date | undefined;
 
   constructor () {
@@ -19,5 +21,6 @@ export class ChargeForListDto {
     this.circumstanceDescription = '';
     this.amount = 0;
     this.chargeStatus = ChargeStatus.None;
+    this.circumstanceStatus = CircumstanceStatus.None;
   }
 }
