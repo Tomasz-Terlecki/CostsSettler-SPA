@@ -10,6 +10,7 @@ export class ChargeForListDto {
   circumstanceId: string;
   amount: number;
   chargeStatus: ChargeStatus;
+  dateTime: Date | undefined;
 
   constructor () {
     this.creditorId = '';

@@ -12,6 +12,7 @@ export class Charge extends BaseModel {
   circumstanceId: string;
   amount: number;
   chargeStatus: ChargeStatus;
+  dateTime: Date | undefined;
 
   constructor () {
     super();

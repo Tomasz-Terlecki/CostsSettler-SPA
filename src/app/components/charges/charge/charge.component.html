@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="container row first-row">
       <h5 class="card-title col-10">{{ charge?.circumstanceDescription }}</h5>
-      <p class="card-text date-text col-2">01.03.2023</p>
+      <p class="card-text date-text col-2">{{ charge?.dateTime | date: 'dd.MM.yyyy hh:mm' }}</p>
     </div>
     <div class="container row second-row">
       <div class="container members-container clearfix col align-self-end">

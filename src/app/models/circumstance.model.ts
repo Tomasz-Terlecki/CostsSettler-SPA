@@ -10,6 +10,7 @@ export class Circumstance extends BaseModel{
   circumstanceStatus: CircumstanceStatus;
   debtors: Array<User> | undefined;
   creditor: User | undefined;
+  dateTime: Date | undefined;
   
   constructor() {
     super();
