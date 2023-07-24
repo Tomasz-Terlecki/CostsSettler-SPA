@@ -9,8 +9,14 @@
     </div>
     <div class="container row second-row">
       <div class="container members-container clearfix col align-self-end">
-        <p class="card-text member-text">Creditor: {{ charge?.debtor }}</p>
-        <p class="card-text member-text">Debtor: {{ charge?.debtor }}</p>
+        <p class="container card-text member-text row">
+          <span class="creditor-title col-3 clearfix align-self-end">Creditor:</span> 
+          <span class="creditor-name col-9 clearfix align-self-end">{{ charge?.creditor?.firstName + ' ' + charge?.creditor?.lastName }}</span>
+        </p>
+        <p class="container card-text member-text row">
+          <span class="debtor-title col-3 clearfix align-self-end">Debtor:</span> 
+          <span class="debtor-name col-9 clearfix align-self-end">{{ charge?.debtor?.firstName + ' ' + charge?.debtor?.lastName }}</span>
+        </p>
       </div>
       <div class="container action-buttons-container clearfix col align-self-end">
         <a href="#" class="btn btn-primary float-right action-button">Go somewhere</a>
