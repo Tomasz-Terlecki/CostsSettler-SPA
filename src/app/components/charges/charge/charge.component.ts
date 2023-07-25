@@ -13,12 +13,24 @@ export class ChargeComponent {
 
   constructor(private authService: AuthService) {}
   
-  isVoteEnabled(): boolean {
+  get isVoteEnabled(): boolean {
     return this.charge?.debtorId === this.authService.currentUser?.id;
   }
 
-  isSettleEnabled(): boolean {
+  get isSettleEnabled(): boolean {
     return this.charge?.circumstanceStatus === CircumstanceStatus.Accepted
       && this.charge?.creditorId === this.authService.currentUser?.id;
+  }
+
+  settleCharge(): void {
+
+  }
+
+  acceptCharge(): void {
+    
+  }
+  
+  rejectCharge(): void {
+    
   }
 }

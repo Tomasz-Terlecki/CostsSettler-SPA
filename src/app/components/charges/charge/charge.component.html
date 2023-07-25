@@ -19,9 +19,9 @@
         </p>
       </div>
       <div class="container action-buttons-container clearfix col align-self-end">
-        <a *ngIf="isSettleEnabled()" href="#" class="btn btn-success float-right action-button">Settle</a>
-        <a *ngIf="isVoteEnabled()" href="" class="btn btn-success float-right action-button">Accept</a>
-        <a *ngIf="isVoteEnabled()" href="#" class="btn btn-danger float-right action-button">Reject</a>
+        <button type="button" *ngIf="isSettleEnabled" (click)="settleCharge()" class="btn btn-success float-right action-button">Settle</button>
+        <button type="button" *ngIf="isVoteEnabled" (click)="acceptCharge()" class="btn btn-success float-right action-button">Accept</button>
+        <button type="button" *ngIf="isVoteEnabled" (click)="rejectCharge()" class="btn btn-danger float-right action-button">Reject</button>
       </div>
     </div>
   </div>
