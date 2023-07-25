@@ -41,7 +41,7 @@ export class ChargeComponent {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Accept)
       .subscribe({
         next: (res) => {
-          // Get By Id? Or get full charge list?
+          // TODO: Get By Id? Or get full charge list?
           // this.chargesService.
         },
         error: (err) => { console.error(err); }
@@ -52,7 +52,7 @@ export class ChargeComponent {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Reject)
       .subscribe({
         next: (res) => {
-          // Get By Id? Or get full charge list?
+          // TODO: Get By Id? Or get full charge list?
           // this.chargesService.
         },
         error: (err) => { console.error(err); }
@@ -63,7 +63,7 @@ export class ChargeComponent {
     this.chargesService.settleCharge(this.charge.id)
       .subscribe({
         next: (res) => {
-          // Get By Id? Or get full charge list?
+          // TODO: Get By Id? Or get full charge list?
           // this.chargesService.
         },
         error: (err) => { console.error(err); }
