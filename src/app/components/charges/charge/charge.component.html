@@ -4,24 +4,57 @@
   </div>
   <div class="card-body">
     <div class="container row first-row">
-      <h5 class="card-title col-10">{{ charge?.circumstanceDescription }}</h5>
-      <p class="card-text date-text col-2">{{ charge?.dateTime | date: 'dd.MM.yyyy hh:mm' }}</p>
+      <h5 class="card-title col-10">
+        {{ charge?.circumstanceDescription }}
+      </h5>
+      <p class="card-text date-text col-2">
+        {{ charge?.dateTime | date: 'dd.MM.yyyy hh:mm' }}
+      </p>
     </div>
     <div class="container row second-row">
       <div class="container members-container clearfix col align-self-end">
         <p class="container card-text member-text row">
-          <span class="creditor-title col-3 clearfix align-self-end">Creditor:</span> 
-          <span class="creditor-name col-9 clearfix align-self-end">{{ charge?.creditor?.firstName + ' ' + charge?.creditor?.lastName }}</span>
+          <span class="creditor-title col-3 clearfix align-self-end">
+            Creditor:
+          </span> 
+          <span class="creditor-name col-9 clearfix align-self-end">
+            {{ charge?.creditor?.firstName + ' ' + charge?.creditor?.lastName }}
+          </span>
         </p>
         <p class="container card-text member-text row">
-          <span class="debtor-title col-3 clearfix align-self-end">Debtor:</span> 
-          <span class="debtor-name col-9 clearfix align-self-end">{{ charge?.debtor?.firstName + ' ' + charge?.debtor?.lastName }}</span>
+          <span class="debtor-title col-3 clearfix align-self-end">
+            Debtor:
+          </span> 
+          <span class="debtor-name col-9 clearfix align-self-end">
+            {{ charge?.debtor?.firstName + ' ' + charge?.debtor?.lastName }}
+          </span>
         </p>
       </div>
       <div class="container action-buttons-container clearfix col align-self-end">
-        <button type="button" *ngIf="isSettleEnabled" (click)="settleCharge()" class="btn btn-success float-right action-button">Settle</button>
-        <button type="button" *ngIf="isVoteEnabled" (click)="acceptCharge()" class="btn btn-success float-right action-button">Accept</button>
-        <button type="button" *ngIf="isVoteEnabled" (click)="rejectCharge()" class="btn btn-danger float-right action-button">Reject</button>
+        <button 
+          type="button" 
+          *ngIf="isSettleEnabled" 
+          (click)="settleCharge()" 
+          class="btn btn-success float-right action-button"
+        >
+          Settle
+        </button>
+        <button 
+          type="button" 
+          *ngIf="isVoteEnabled" 
+          (click)="acceptCharge()" 
+          class="btn btn-success float-right action-button"
+        >
+          Accept
+        </button>
+        <button 
+          type="button" 
+          *ngIf="isVoteEnabled" 
+          (click)="rejectCharge()" 
+          class="btn btn-danger float-right action-button"
+        >
+          Reject
+        </button>
       </div>
     </div>
   </div>
