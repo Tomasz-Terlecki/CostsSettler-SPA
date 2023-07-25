@@ -1,14 +1,14 @@
 <div class="card ">
   <div class="card-header">
-    {{ charge?.chargeStatus }}
+    {{ charge.chargeStatus }}
   </div>
   <div class="card-body">
     <div class="container row first-row">
       <h5 class="card-title col-10">
-        {{ charge?.circumstanceDescription }}
+        {{ charge.circumstanceDescription }}
       </h5>
       <p class="card-text date-text col-2">
-        {{ charge?.dateTime | date: 'dd.MM.yyyy hh:mm' }}
+        {{ charge.dateTime | date: 'dd.MM.yyyy hh:mm' }}
       </p>
     </div>
     <div class="container row second-row">
@@ -18,7 +18,7 @@
             Creditor:
           </span> 
           <span class="creditor-name col-9 clearfix align-self-end">
-            {{ charge?.creditor?.firstName + ' ' + charge?.creditor?.lastName }}
+            {{ charge.creditor?.firstName + ' ' + charge.creditor?.lastName }}
           </span>
         </p>
         <p class="container card-text member-text row">
@@ -26,7 +26,7 @@
             Debtor:
           </span> 
           <span class="debtor-name col-9 clearfix align-self-end">
-            {{ charge?.debtor?.firstName + ' ' + charge?.debtor?.lastName }}
+            {{ charge.debtor?.firstName + ' ' + charge.debtor?.lastName }}
           </span>
         </p>
       </div>
