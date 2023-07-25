@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { ChargeForListDto } from '../models/dtos/charge-for-list.dto';
+import { ChargeVote } from '../enums/charge-vote.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,11 @@ export class ChargesService extends BaseService {
     });
   }
 
+  settleCharge(chargeId: string): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.baseUrl + '/settle', { chargeId });
+  }
+
+  voteForCharge(chargeId: string, chargeVote: ChargeVote): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.baseUrl + '/vote', { chargeId, chargeVote });
+  }
 }

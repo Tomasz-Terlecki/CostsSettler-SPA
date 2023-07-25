@@ -3,6 +3,7 @@ import { User } from "../user.model";
 import { CircumstanceStatus } from "src/app/enums/circumstance.status";
 
 export class ChargeForListDto {
+  id: string;
   creditor: User | undefined;
   creditorId: string;
   debtor: User | undefined;
@@ -15,6 +16,7 @@ export class ChargeForListDto {
   dateTime: Date | undefined;
 
   constructor () {
+    this.id = '';
     this.creditorId = '';
     this.debtorId = '';
     this.circumstanceId = '';
