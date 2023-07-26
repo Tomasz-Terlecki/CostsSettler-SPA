@@ -14,9 +14,13 @@ export class ChargeListComponent implements OnInit {
   constructor(private chargesService: ChargesService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData(): void {
     this.chargesService.get({
-        userId: this.authService.currentUser?.id
-      })
+      userId: this.authService.currentUser?.id
+    })
       .subscribe({
         next: (res) => { this.charges = res },
         error: (err) => { console.error(err) }

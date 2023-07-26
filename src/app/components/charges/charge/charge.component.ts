@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChargeStatus } from 'src/app/enums/charge-status.enum';
 import { ChargeVote } from 'src/app/enums/charge-vote.enum';
 import { CircumstanceStatus } from 'src/app/enums/circumstance.status';
@@ -13,6 +13,7 @@ import { ChargesService } from 'src/app/services/charges.service';
 })
 export class ChargeComponent {
   @Input() charge!: ChargeForListDto;
+  @Output() chargeChanged = new EventEmitter<void>();
 
   constructor(
     private authService: AuthService, 
@@ -41,8 +42,9 @@ export class ChargeComponent {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Accept)
       .subscribe({
         next: (res) => {
-          // TODO: Get By Id? Or get full charge list?
-          // this.chargesService.
+          if (res){
+            this.chargeChanged.emit();
+          }
         },
         error: (err) => { console.error(err); }
       });
@@ -52,8 +54,9 @@ export class ChargeComponent {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Reject)
       .subscribe({
         next: (res) => {
-          // TODO: Get By Id? Or get full charge list?
-          // this.chargesService.
+          if (res){
+            this.chargeChanged.emit();
+          }
         },
         error: (err) => { console.error(err); }
       });
@@ -63,8 +66,9 @@ export class ChargeComponent {
     this.chargesService.settleCharge(this.charge.id)
       .subscribe({
         next: (res) => {
-          // TODO: Get By Id? Or get full charge list?
-          // this.chargesService.
+          if (res){
+            this.chargeChanged.emit();
+          }
         },
         error: (err) => { console.error(err); }
       });
