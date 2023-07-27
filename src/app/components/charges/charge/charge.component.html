@@ -29,6 +29,14 @@
             {{ charge.debtor?.firstName + ' ' + charge.debtor?.lastName }}
           </span>
         </p>
+        <p class="container card-text member-text row">
+          <span class="debtor-title col-3 clearfix align-self-end">
+            Amount:
+          </span> 
+          <span class="debtor-name col-9 clearfix align-self-end">
+            {{ charge.amount }} zł
+          </span>
+        </p>
       </div>
       <div class="container action-buttons-container clearfix col align-self-end">
         <button 
