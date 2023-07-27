@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ChargeStatus } from 'src/app/enums/charge-status.enum';
 import { ChargeVote } from 'src/app/enums/charge-vote.enum';
 import { CircumstanceStatus } from 'src/app/enums/circumstance.status';
@@ -17,7 +18,8 @@ export class ChargeComponent {
 
   constructor(
     private authService: AuthService, 
-    private chargesService: ChargesService) {}
+    private chargesService: ChargesService,
+    private toastrService: ToastrService) {}
   
   get isVoteEnabled(): boolean {
     if (this.charge.chargeStatus === ChargeStatus.Settled ||
@@ -44,9 +46,13 @@ export class ChargeComponent {
         next: (res) => {
           if (res){
             this.chargeChanged.emit();
+            this.toastrService.success('Charge accepted successfully')
           }
         },
-        error: (err) => { console.error(err); }
+        error: (err) => { 
+          console.error(err);
+          this.toastrService.error('Accepting charge failed')
+        }
       });
   }
   
@@ -56,9 +62,13 @@ export class ChargeComponent {
         next: (res) => {
           if (res){
             this.chargeChanged.emit();
+            this.toastrService.success('Charge rejected successfully')
           }
         },
-        error: (err) => { console.error(err); }
+        error: (err) => { 
+          console.error(err);
+          this.toastrService.error('Accepting charge failed')
+        }
       });
   }
 
@@ -68,9 +78,13 @@ export class ChargeComponent {
         next: (res) => {
           if (res){
             this.chargeChanged.emit();
+            this.toastrService.success('Charge settled successfully')
           }
         },
-        error: (err) => { console.error(err); }
+        error: (err) => { 
+          console.error(err); 
+          this.toastrService.error('Settling charge failed')
+        }
       });
   }
 }
