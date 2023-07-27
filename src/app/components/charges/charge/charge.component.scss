@@ -32,3 +32,19 @@
   font-size: smaller;
   color: grey;
 }
+
+.border-color-rejected {
+  border-color: red;
+}
+
+.border-color-settled {
+  border-color: green;
+}
+
+.background-rejected {
+  background: rgb(243, 128, 128);
+}
+
+.background-settled {
+  background: rgb(139, 187, 139);
+}

@@ -1,5 +1,5 @@
-<div class="card ">
-  <div class="card-header">
+<div class="card" [ngClass]="setCardClass()">
+  <div class="card-header" [ngClass]="setCardHeaderClass()">
     {{ charge.chargeStatus }}
   </div>
   <div class="card-body">

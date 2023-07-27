@@ -87,4 +87,18 @@ export class ChargeComponent {
         }
       });
   }
+
+  setCardClass(): any {
+    return {
+      'border-color-rejected': this.charge.chargeStatus === ChargeStatus.Rejected,
+      'border-color-settled': this.charge.chargeStatus === ChargeStatus.Settled
+    };
+  }
+
+  setCardHeaderClass(): any {
+    return {
+      'background-rejected': this.charge.chargeStatus === ChargeStatus.Rejected,
+      'background-settled': this.charge.chargeStatus === ChargeStatus.Settled
+    };
+  }
 }
