@@ -13,6 +13,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChargesService } from './services/charges.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -41,7 +43,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
     BrowserModule,
     AppRoutingModule,
     KeycloakAngularModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      extendedTimeOut: 3000,
+    })
   ],
   providers: [
     AuthService,
