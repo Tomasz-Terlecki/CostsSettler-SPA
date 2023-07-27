@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CircumstanceComponent } from './components/circumstances/circumstance/circumstance.component';
 import { CircumstanceListComponent } from './components/circumstances/circumstance-list/circumstance-list.component';
+import { CircumstancesService } from './services/circumstances.service';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -58,6 +59,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
   providers: [
     AuthService,
     ChargesService,
+    CircumstancesService,
     AuthGuard,
     {
       provide: APP_INITIALIZER,
