@@ -1,3 +1,36 @@
-<p>
-  circumstance works!
-</p>
+<div class="card" [ngClass]="setCardClass()">
+  <div class="card-header" [ngClass]="setCardHeaderClass()">
+    {{ circumstance.circumstanceStatus }}
+  </div>
+  <div class="card-body">
+    <div class="container row first-row">
+      <h5 class="card-title col-10">
+        {{ circumstance.description }}
+      </h5>
+      <p class="card-text date-text col-2">
+        {{ circumstance.dateTime | date: 'dd.MM.yyyy hh:mm' }}
+      </p>
+    </div>
+    <div class="container row second-row">
+      <div class="container members-container col">
+        <p class="container card-text member-text row">
+          <span class="amount-title col-4 clearfix align-self-end">
+            Total amount:
+          </span> 
+          <span class="col-8 clearfix align-self-end">
+            {{ circumstance.totalAmount }} zł
+          </span>
+        </p>
+      </div>
+      <div class="container action-buttons-container col clearfix align-self-end">
+        <button
+          type="button"
+          (click)="viewCircumstance()"
+          class="btn btn-primary float-right action-button"
+        >
+          View
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

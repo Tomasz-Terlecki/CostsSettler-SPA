@@ -1,0 +1,50 @@
+.container {
+  max-width: none;
+}
+
+.members-container {
+  padding-left: 0px;
+
+  .member-text {
+    margin: 0;
+  }
+}
+
+.date-text {
+  text-align: right;
+}
+
+.action-button {
+  margin-left: 10px;
+}
+
+.action-buttons-container {
+  width: 100%;
+  padding-right: 0;
+}
+
+.first-row {
+  margin-bottom: 10px;
+}
+
+.creditor-title,
+.amount-title {
+  font-size: smaller;
+  color: grey;
+}
+
+.border-color-rejected {
+  border-color: red;
+}
+
+.border-color-settled {
+  border-color: green;
+}
+
+.background-rejected {
+  background: rgb(243, 128, 128);
+}
+
+.background-settled {
+  background: rgb(139, 187, 139);
+}
