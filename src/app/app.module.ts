@@ -15,6 +15,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CircumstanceComponent } from './components/circumstances/circumstance/circumstance.component';
+import { CircumstanceListComponent } from './components/circumstances/circumstance-list/circumstance-list.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -37,6 +39,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppComponent,
     ChargeComponent,
     ChargeListComponent,
+    CircumstanceComponent,
+    CircumstanceListComponent,
     NavbarComponent
   ],
   imports: [
