@@ -1,3 +1,44 @@
-<p>
-  detailed-circumstance works!
-</p>
+<form [formGroup]="circumstanceForm" (ngSubmit)="save()">
+  <div class="container amount-container mb-5 mt-3 d-flex">
+    <label for="amountInput" class="form-label amount-label">
+      Total Amount
+    </label>
+    <input type="number" class="form-control" id="amountInput" formControlName="totalAmount">
+  </div>
+  
+  <div class="mb-3 row">
+    <div class=" col-8">
+      <label for="descriptionInput" class="form-label">
+        Description
+      </label>
+      <textarea class="form-control" id="descriptionInput" formControlName="description" rows="5" (resize)="'none'"></textarea>
+    </div>
+    <div class="col-4">
+      <div class="mb-4 row">
+        <label for="dateInput" class="form-label">
+          Date
+        </label>
+        <input type="date" class="form-control" id="dateInput" formControlName="date">
+      </div>
+      <div class="mb-3 row">
+        <label for="timeInput" class="form-label">
+          Time
+        </label>
+        <input type="time" class="form-control" id="timeInput" formControlName="time">
+      </div>
+    </div>
+  </div>
+<!--   
+  <div class="row">
+    <div class="col-4">
+      <select class="form-select">
+        <option *ngFor="let user of users"></option>
+      </select>
+    </div>
+    <div class="col-4">
+
+    </div>
+  </div> -->
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
