@@ -23,13 +23,12 @@
         </p>
       </div>
       <div class="container action-buttons-container col clearfix align-self-end">
-        <button
-          type="button"
-          (click)="viewCircumstance()"
+        <a
+          routerLink="/circumstance/{{circumstance.id}}"
           class="btn btn-primary float-right action-button"
         >
-          View
-        </button>
+          View details
+        </a>
       </div>
     </div>
   </div>

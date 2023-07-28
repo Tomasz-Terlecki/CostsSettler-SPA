@@ -26,7 +26,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'circumstance',
+        path: 'circumstance/:id',
         component: DetailedCircumstanceComponent,
         canActivate: [AuthGuard]
       }
