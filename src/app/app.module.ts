@@ -19,6 +19,7 @@ import { CircumstanceComponent } from './components/circumstances/circumstance/c
 import { CircumstanceListComponent } from './components/circumstances/circumstance-list/circumstance-list.component';
 import { CircumstancesService } from './services/circumstances.service';
 import { DetailedCircumstanceComponent } from './components/circumstances/detailed-circumstance/detailed-circumstance.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -52,6 +53,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     KeycloakAngularModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
