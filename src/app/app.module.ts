@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CircumstanceComponent } from './components/circumstances/circumstance/circumstance.component';
 import { CircumstanceListComponent } from './components/circumstances/circumstance-list/circumstance-list.component';
 import { CircumstancesService } from './services/circumstances.service';
+import { DetailedCircumstanceComponent } from './components/circumstances/detailed-circumstance/detailed-circumstance.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -42,6 +43,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ChargeListComponent,
     CircumstanceComponent,
     CircumstanceListComponent,
+    DetailedCircumstanceComponent,
     NavbarComponent
   ],
   imports: [

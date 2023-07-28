@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth-guard';
 import { ChargeListComponent } from './components/charges/charge-list/charge-list.component';
 import { CircumstanceListComponent } from './components/circumstances/circumstance-list/circumstance-list.component';
+import { DetailedCircumstanceComponent } from './components/circumstances/detailed-circumstance/detailed-circumstance.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
       {
         path: 'circumstances',
         component: CircumstanceListComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'circumstance',
+        component: DetailedCircumstanceComponent,
         canActivate: [AuthGuard]
       }
     ]
