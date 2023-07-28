@@ -20,6 +20,7 @@ import { CircumstanceListComponent } from './components/circumstances/circumstan
 import { CircumstancesService } from './services/circumstances.service';
 import { DetailedCircumstanceComponent } from './components/circumstances/detailed-circumstance/detailed-circumstance.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from './services/users.service';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -64,6 +65,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AuthService,
     ChargesService,
     CircumstancesService,
+    UsersService,
     AuthGuard,
     {
       provide: APP_INITIALIZER,
