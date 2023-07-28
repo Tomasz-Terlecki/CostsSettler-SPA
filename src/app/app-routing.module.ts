@@ -10,6 +10,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        redirectTo: 'circumstances',
+        pathMatch: 'full'
+      },
+      {
         path: 'charges',
         component: ChargeListComponent,
         canActivate: [AuthGuard]
@@ -23,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'charges'
+    redirectTo: 'circumstances'
   },
 ];
 
