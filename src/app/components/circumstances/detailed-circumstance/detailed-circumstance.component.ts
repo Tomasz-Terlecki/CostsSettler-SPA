@@ -16,6 +16,7 @@ export class DetailedCircumstanceComponent implements OnInit {
   circumstance!: Circumstance;
   circumstanceForm!: FormGroup;
   users!: UserForListDto[];
+  selectedDebtors: UserForListDto[] = [];
 
   constructor(private route: ActivatedRoute, private circumstancesService: CircumstancesService,
     private toastrService: ToastrService, private usersService: UsersService
@@ -34,6 +35,7 @@ export class DetailedCircumstanceComponent implements OnInit {
       .subscribe({
         next: (res) => { 
           this.circumstance = res;
+          this.setCircumstanceInForm(res);
         },
         error: (err) => {
           console.error(err); 
@@ -62,6 +64,39 @@ export class DetailedCircumstanceComponent implements OnInit {
       date: new FormControl<Date | null>(null, Validators.required),
       time: new FormControl<Date | null>(null, Validators.required),
     })
+  }
+
+  setCircumstanceInForm(circumstance: Circumstance): void {
+    this.circumstanceForm.controls['description'].setValue(circumstance.description);
+    this.circumstanceForm.controls['totalAmount'].setValue(circumstance.totalAmount);
+    this.circumstanceForm.controls['date'].setValue(circumstance.dateTime);
+    this.circumstanceForm.controls['time'].setValue(circumstance.dateTime);
+    if (circumstance.debtors) {
+      for (let debtor of circumstance.debtors) {
+        this.addDebtor(debtor.id);
+      }
+    }
+  }
+
+  debtorSelected(event: any) {
+    const userId = event.target.value;
+    this.addDebtor(userId);
+  }
+
+  addDebtor(userId: string) {
+    const user = this.users.find(user => user.id === userId);
+    if (user) {
+      this.selectedDebtors.push(user);
+      const indexToDelete = this.users.findIndex(u => u.id === user.id)
+      this.users.splice(indexToDelete, 1);
+    }
+  }
+
+  removeDebtor(userId: string) {
+    const indexToDelete = this.selectedDebtors.findIndex(user => user.id == userId);
+    const user = this.selectedDebtors[indexToDelete];
+    this.users.push(user);
+    this.selectedDebtors.splice(indexToDelete, 1);
   }
 
   save(): void {

@@ -31,17 +31,31 @@
   
   <div class="row mb-4">
     <div class="col-4">
-      <label for="membersInput" class="form-label pl-2">
-        Choose members
+      <label for="debtorsSelect" class="form-label pl-2">
+        Choose debtors
       </label>
-      <select id="membersInput" class="form-select">
-        <option *ngFor="let user of users">
-          {{user.firstName + ' ' + user.lastName}}
+      <select 
+        id="debtorsSelect"
+        class="form-select"
+        (change)="debtorSelected($event)"
+      >
+        <option selected>-- Choose --</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user.firstName }} {{ user.lastName }}
         </option>
       </select>
     </div>
+    
     <div class="col-4">
-
+      <label class="form-label pl-2" for="debtorsList">
+        Selected debtors
+      </label>
+      <ul class="list-group" id="debtorsList">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of selectedDebtors">
+          {{ user.firstName }} {{ user.lastName }}
+          <button type="button" class="btn-close" aria-label="Close" (click)="removeDebtor(user.id)"></button>
+        </li>
+      </ul>
     </div>
   </div>
 
