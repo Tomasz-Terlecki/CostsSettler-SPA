@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance.model';
 import { UserForListDto } from 'src/app/models/dtos/user-for-list.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { CircumstancesService } from 'src/app/services/circumstances.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -19,7 +20,7 @@ export class DetailedCircumstanceComponent implements OnInit {
   selectedDebtors: UserForListDto[] = [];
 
   constructor(private route: ActivatedRoute, private circumstancesService: CircumstancesService,
-    private toastrService: ToastrService, private usersService: UsersService
+    private toastrService: ToastrService, private usersService: UsersService, private authService: AuthService
   ) {
     this.setForm();
   }
@@ -75,6 +76,9 @@ export class DetailedCircumstanceComponent implements OnInit {
       for (let debtor of circumstance.debtors) {
         this.addDebtor(debtor.id);
       }
+      const loggedUsersIndex = this.users
+        .findIndex(user => user.id === this.authService.currentUser?.id);
+      this.users.splice(loggedUsersIndex, 1);
     }
   }
 
