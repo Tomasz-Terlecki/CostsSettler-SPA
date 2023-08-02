@@ -10,12 +10,13 @@ export class Circumstance extends BaseModel{
   circumstanceStatus: CircumstanceStatus;
   debtors: Array<User> | undefined;
   creditor: User | undefined;
-  dateTime: Date | undefined;
+  dateTime: Date;
   
   constructor() {
     super();
     this.description = '';
     this.totalAmount = 0;
     this.circumstanceStatus = CircumstanceStatus.None;
+    this.dateTime = new Date();
   }
 }
