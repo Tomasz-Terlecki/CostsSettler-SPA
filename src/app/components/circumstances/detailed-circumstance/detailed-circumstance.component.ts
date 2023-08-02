@@ -1,8 +1,10 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance.model';
+import { CircumstanceForAddDto } from 'src/app/models/dtos/circumstance-for-add.dto';
 import { UserForListDto } from 'src/app/models/dtos/user-for-list.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { CircumstancesService } from 'src/app/services/circumstances.service';
@@ -70,8 +72,8 @@ export class DetailedCircumstanceComponent implements OnInit {
   setCircumstanceInForm(circumstance: Circumstance): void {
     this.circumstanceForm.controls['description'].setValue(circumstance.description);
     this.circumstanceForm.controls['totalAmount'].setValue(circumstance.totalAmount);
-    this.circumstanceForm.controls['date'].setValue(circumstance.dateTime);
-    this.circumstanceForm.controls['time'].setValue(circumstance.dateTime);
+    this.circumstanceForm.controls['date'].setValue(formatDate(circumstance.dateTime, 'yyyy-MM-dd', 'en'));
+    this.circumstanceForm.controls['time'].setValue(formatDate(circumstance.dateTime, 'HH:mm', 'en'));
     if (circumstance.debtors) {
       for (let debtor of circumstance.debtors) {
         this.addDebtor(debtor.id);
