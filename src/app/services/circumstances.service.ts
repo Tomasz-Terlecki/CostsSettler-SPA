@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Circumstance } from '../models/circumstance.model';
 import { CircumstanceForListDto } from '../models/dtos/circumstance-for-list.dto';
+import { CircumstanceForAddDto } from '../models/dtos/circumstance-for-add.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class CircumstancesService extends BaseService {
     return this.httpClient.get<Circumstance>(this.baseUrl + `/${circumstanceId}`);
   }
 
-  add(circumstance: Circumstance): Observable<boolean> {
-    return this.httpClient.post<boolean>(this.baseUrl, { circumstance });
+  add(circumstance: CircumstanceForAddDto): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.baseUrl, circumstance);
   }
 }

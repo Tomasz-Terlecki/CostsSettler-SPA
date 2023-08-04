@@ -42,7 +42,7 @@ export class DetailedCircumstanceComponent implements OnInit {
         },
         error: (err) => {
           console.error(err); 
-          this.toastrService.error('Downloading circumstances failed');
+          this.toastrService.error('Downloading circumstance failed');
         }
       })
   }
@@ -105,8 +105,30 @@ export class DetailedCircumstanceComponent implements OnInit {
     this.selectedDebtors.splice(indexToDelete, 1);
   }
 
-  save(): void {
-    console.log(this.circumstanceForm.value);
+  addCircumstance(): void {
+    const circumstance = this.getFromForm();
+    this.circumstancesService.add(circumstance)
+      .subscribe({
+        next: () => {
+          this.toastrService.success('Circumstance adding succeeded');
+        },
+        error: (err) => {
+          console.error(err);
+          this.toastrService.error('Circumstance adding failed');
+        }
+      })
+  }
+
+
+  private getFromForm(): CircumstanceForAddDto {
+    let circumstance = this.circumstanceForm.value as CircumstanceForAddDto;
+    circumstance.debtorsIds = this.selectedDebtors.map(debtor => debtor.id);
+
+    if (this.authService.currentUser) {
+      circumstance.creditorId = this.authService.currentUser.id;
+    }
+
+    return circumstance;
   }
 
 }
