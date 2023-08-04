@@ -52,7 +52,11 @@
         Selected debtors
       </label>
       <ul class="list-group" id="debtorsList">
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of selectedDebtors">
+        <li 
+          class="list-group-item d-flex justify-content-between align-items-center" 
+          *ngFor="let user of selectedDebtors" 
+          [ngClass]="{ 'background-gray': readonly }"
+        >
           {{ user.firstName }} {{ user.lastName }}
           <button *ngIf="!readonly" type="button" class="btn-close" aria-label="Close" (click)="removeDebtor(user.id)"></button>
         </li>
