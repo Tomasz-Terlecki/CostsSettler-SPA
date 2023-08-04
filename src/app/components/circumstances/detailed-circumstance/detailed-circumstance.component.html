@@ -31,10 +31,11 @@
   
   <div class="row mb-4">
     <div class="col-4">
-      <label for="debtorsSelect" class="form-label pl-2">
+      <label *ngIf="!readonly" for="debtorsSelect" class="form-label pl-2">
         Choose debtors
       </label>
       <select 
+        *ngIf="!readonly"
         id="debtorsSelect"
         class="form-select"
         (change)="debtorSelected($event)"
@@ -53,12 +54,12 @@
       <ul class="list-group" id="debtorsList">
         <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let user of selectedDebtors">
           {{ user.firstName }} {{ user.lastName }}
-          <button type="button" class="btn-close" aria-label="Close" (click)="removeDebtor(user.id)"></button>
+          <button *ngIf="!readonly" type="button" class="btn-close" aria-label="Close" (click)="removeDebtor(user.id)"></button>
         </li>
       </ul>
     </div>
 
-    <div class="container d-flex justify-content-center col-4 align-items-end">
+    <div *ngIf="!readonly" class="container d-flex justify-content-center col-4 align-items-end">
       <button type="button" class="btn btn-success save-button" (click)="addCircumstance()">Add</button>
     </div>
   </div>

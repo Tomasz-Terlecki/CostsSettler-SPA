@@ -32,8 +32,4 @@ export class CircumstanceListComponent implements OnInit {
       })
   }
 
-  addCircumstance(): void {
-
-  }
-
 }

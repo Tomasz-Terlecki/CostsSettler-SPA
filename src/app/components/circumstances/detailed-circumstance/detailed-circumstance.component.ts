@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Circumstance } from 'src/app/models/circumstance.model';
 import { CircumstanceForAddDto } from 'src/app/models/dtos/circumstance-for-add.dto';
@@ -16,19 +16,29 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./detailed-circumstance.component.scss']
 })
 export class DetailedCircumstanceComponent implements OnInit {
+  mode: 'add'|'read' = 'read';
   circumstance!: Circumstance;
   circumstanceForm!: FormGroup;
   users!: UserForListDto[];
   selectedDebtors: UserForListDto[] = [];
 
-  constructor(private route: ActivatedRoute, private circumstancesService: CircumstancesService,
+  get readonly() {
+    return this.mode === 'read';
+  }
+
+  constructor(private router: Router, private route: ActivatedRoute, private circumstancesService: CircumstancesService,
     private toastrService: ToastrService, private usersService: UsersService, private authService: AuthService
   ) {
     this.setForm();
+    this.mode = route.toString().includes('00000000-0000-0000-0000-000000000000')
+      ? 'add'
+      : 'read';
   }
 
   ngOnInit() {
-    this.getCircumstance();
+    if (this.mode === 'read') {
+      this.getCircumstance();
+    }
     this.getUsers();
   }
   
@@ -82,6 +92,13 @@ export class DetailedCircumstanceComponent implements OnInit {
         .findIndex(user => user.id === this.authService.currentUser?.id);
       this.users.splice(loggedUsersIndex, 1);
     }
+
+    if (this.readonly) {
+      this.circumstanceForm.controls['description'].disable();
+      this.circumstanceForm.controls['totalAmount'].disable();
+      this.circumstanceForm.controls['date'].disable();
+      this.circumstanceForm.controls['time'].disable();
+    }
   }
 
   debtorSelected(event: any) {
@@ -111,6 +128,7 @@ export class DetailedCircumstanceComponent implements OnInit {
       .subscribe({
         next: () => {
           this.toastrService.success('Circumstance adding succeeded');
+          this.router.navigate(['/circumstances']);
         },
         error: (err) => {
           console.error(err);
