@@ -1,3 +1,8 @@
-<div *ngFor="let circumstance of circumstances" class="container circumstances-container">
-  <app-circumstance [circumstance]="circumstance"></app-circumstance>
+<div class="main-list-container">
+  <div class="container d-flex justify-content-center col-4 align-items-end">
+    <button type="button" class="btn btn-success add-button" (click)="addCircumstance()">Add</button>
+  </div>
+  <div *ngFor="let circumstance of circumstances" class="container circumstances-container">
+    <app-circumstance [circumstance]="circumstance"></app-circumstance>
+  </div>
 </div>
