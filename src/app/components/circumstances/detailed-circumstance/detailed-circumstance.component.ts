@@ -62,6 +62,9 @@ export class DetailedCircumstanceComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.users = res;
+          const loggedUserIndex = this.users
+            .findIndex(user => user.id === this.authService.currentUser?.id);
+          this.users.splice(loggedUserIndex, 1);
         },
         error: (err) => {
           console.error(err);
@@ -88,9 +91,9 @@ export class DetailedCircumstanceComponent implements OnInit {
       for (let debtor of circumstance.debtors) {
         this.addDebtor(debtor.id);
       }
-      const loggedUsersIndex = this.users
+      const loggedUserIndex = this.users
         .findIndex(user => user.id === this.authService.currentUser?.id);
-      this.users.splice(loggedUsersIndex, 1);
+      this.users.splice(loggedUserIndex, 1);
     }
 
     if (this.readonly) {
