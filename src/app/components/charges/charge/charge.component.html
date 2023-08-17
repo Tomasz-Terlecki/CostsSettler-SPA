@@ -4,41 +4,41 @@
   </div>
   <div class="card-body">
     <div class="container row first-row">
-      <h5 class="card-title col-10">
+      <h5 class="card-title col-md-9">
         {{ charge.circumstanceDescription }}
       </h5>
-      <p class="card-text date-text col-2">
+      <p class="card-text date-text col-md-3">
         {{ charge.dateTime | date: 'dd.MM.yyyy hh:mm' }}
       </p>
     </div>
     <div class="container row second-row">
       <div class="container members-container col clearfix align-self-end">
         <p class="container card-text member-text row">
-          <span class="creditor-title col-3 clearfix align-self-end">
+          <span class="creditor-title col-md-3 clearfix align-self-end">
             Creditor:
           </span> 
-          <span class="col-9 clearfix align-self-end">
+          <span class="col-md-9 clearfix align-self-end">
             {{ charge.creditor?.firstName + ' ' + charge.creditor?.lastName }}
           </span>
         </p>
         <p class="container card-text member-text row">
-          <span class="debtor-title col-3 clearfix align-self-end">
+          <span class="debtor-title col-md-3 clearfix align-self-end">
             Debtor:
           </span> 
-          <span class="col-9 clearfix align-self-end">
+          <span class="col-md-9 clearfix align-self-end">
             {{ charge.debtor?.firstName + ' ' + charge.debtor?.lastName }}
           </span>
         </p>
         <p class="container card-text member-text row">
-          <span class="amount-title col-3 clearfix align-self-end">
+          <span class="amount-title col-md-3 clearfix align-self-end">
             Amount:
           </span> 
-          <span class="col-9 clearfix align-self-end">
+          <span class="col-md-9 clearfix align-self-end">
             {{ charge.amount }} zł
           </span>
         </p>
       </div>
-      <div class="container action-buttons-container clearfix col align-self-end">
+      <div class="container action-buttons-container clearfix col-md align-self-end">
         <button 
           type="button" 
           *ngIf="isSettleEnabled" 
