@@ -1,3 +1,24 @@
+<div class="container" [formGroup]="filterForm">
+  <div class="row">
+    <div class="col-sm">
+      <label for="dateFromInput" class="form-label pl-2">
+        Date from
+      </label>
+      <input type="date" class="form-control" id="dateFromInput" formControlName="dateFrom">
+    </div>
+
+    <div class="col-sm">
+      <label for="dateToInput" class="form-label pl-2">
+        Date to
+      </label>
+      <input type="date" class="form-control" id="dateToInput" formControlName="dateTo">
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-center col-4">
+    <button type="button" (click)="getData()" class="btn btn-success filter-button">Filter</button>
+  </div>
+</div>
 <div *ngFor="let charge of charges" class="container charges-container">
   <app-charge [charge]="charge" (chargeChanged)="getData()"></app-charge>
 </div>
