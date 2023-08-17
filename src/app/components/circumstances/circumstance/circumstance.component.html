@@ -4,20 +4,20 @@
   </div>
   <div class="card-body">
     <div class="container row first-row">
-      <h5 class="card-title col-10">
+      <h5 class="card-title col-md-9">
         {{ circumstance.description }}
       </h5>
-      <p class="card-text date-text col-2">
+      <p class="card-text date-text col-md-3">
         {{ circumstance.dateTime | date: 'dd.MM.yyyy hh:mm' }}
       </p>
     </div>
     <div class="container row second-row">
       <div class="container members-container col">
         <p class="container card-text member-text row">
-          <span class="amount-title col-4 clearfix align-self-end">
+          <span class="amount-title col-md-4 clearfix align-self-end">
             Total amount:
           </span> 
-          <span class="col-8 clearfix align-self-end">
+          <span class="col-md-8 clearfix align-self-end">
             {{ circumstance.totalAmount }} zł
           </span>
         </p>
