@@ -4,8 +4,15 @@
 
 .navbar {
   background-color: #e3f2fd;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .navbar-brand {
   margin-right: 40px;
+}
+
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
 }
