@@ -27,12 +27,7 @@ export class ChargeListComponent implements OnInit {
   }
 
   getData(): void {
-    let params = this.filterForm.value;
-    this.chargesService.get({
-      userId: this.authService.currentUser?.id,
-      dateFrom: params['dateFrom'],
-      dateTo: params['dateTo']
-    })
+    this.chargesService.get(this.createParams())
       .subscribe({
         next: (res) => { this.charges = res; },
         error: (err) => { 
@@ -49,11 +44,33 @@ export class ChargeListComponent implements OnInit {
     const dateTo = new Date();
 
     this.filterForm = new FormGroup({
-      chargeStatus: new FormControl<ChargeStatus | null>(null, Validators.required),
       dateFrom: new FormControl<string>(formatDate(dateFrom, 'yyyy-MM-dd', 'en'), Validators.required),
       dateTo: new FormControl<string>(formatDate(dateTo, 'yyyy-MM-dd', 'en'), Validators.required),
+      amountFrom: new FormControl<number | null>(null, Validators.required),
+      amountTo: new FormControl<number | null>(null, Validators.required),
       circumstanceDescription: new FormControl<string | null>(null, Validators.required),
     })
+  }
+
+  private createParams(): {} {
+    const formValue = this.filterForm.value;
+
+    let params: any = {};
+    params.userId = this.authService.currentUser?.id;
+    params.dateFrom = formValue['dateFrom'];
+    params.dateTo = formValue['dateTo'];
+
+    if (formValue['amountFrom'] !== null) {
+      params.amountFrom = formValue['amountFrom'];
+    }
+    if (formValue['amountTo'] !== null) {
+      params.amountTo = formValue['amountTo'];
+    }
+    if (formValue['circumstanceDescription'] !== null) {
+      params.circumstanceDescription = formValue['circumstanceDescription'];
+    }
+
+    return params;
   }
 
 }
