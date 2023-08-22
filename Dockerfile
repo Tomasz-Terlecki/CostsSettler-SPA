@@ -1,4 +1,4 @@
-# docker build -t costsettler.spa:latest .
+# docker build -t costssettler.spa:latest .
 
 FROM node:16-alpine AS build
 WORKDIR /app
