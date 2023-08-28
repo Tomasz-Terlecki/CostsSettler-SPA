@@ -15,10 +15,17 @@ describe('Circumstance list tests', () => {
     cy.get('.navbar').should('be.visible');
   });
 
-  it('Add button test', () => {
+  it('Add button visibility test', () => {
     cy.get('.add-button')
       .should('be.visible')
       .should('contain', 'Add');
+  });
+
+  it('Add button click test', () => {
+    cy.get('.add-button').click();
+    
+    cy.url().should('contain', 'http://costssettler.com/circumstance/00000000-0000-0000-0000-000000000000');
+    cy.get('.amount-label').should('be.visible');
   });
 
 });
