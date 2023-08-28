@@ -6,7 +6,6 @@ describe('App logout tests', () => {
 
   beforeEach(() => {
     setMobileViewport();
-    
     login();
   })
   

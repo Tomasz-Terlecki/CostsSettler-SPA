@@ -1,12 +1,16 @@
 /// <reference types="cypress" />
 
-import { login } from "cypress/support/methods";
+import { login, openPage } from "cypress/support/methods";
 
 describe('Navbar content tests', () => {
 
-  beforeEach(() => {
+  before(() => {
     login();
   })
+
+  beforeEach(() => {
+    openPage('http://costssettler.com/');
+  });
   
   it('Navbar content', () => {
     cy.get('#charges-link')

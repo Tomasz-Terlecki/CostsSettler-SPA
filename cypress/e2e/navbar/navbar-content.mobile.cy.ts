@@ -1,13 +1,18 @@
 /// <reference types="cypress" />
 
-import { login, setMobileViewport } from "cypress/support/methods";
+import { login, openPage, setMobileViewport } from "cypress/support/methods";
 
 describe('App logout tests', () => {
 
-  beforeEach(() => {
+  before(() => {
     setMobileViewport();
     login();
-  })
+  });
+
+  beforeEach(() => {
+    openPage('http://costssettler.com/');
+    setMobileViewport();
+  });
 
   it('Navbar toggler visible', () => {
     cy.get('#navbar-toggler').should('be.visible');
