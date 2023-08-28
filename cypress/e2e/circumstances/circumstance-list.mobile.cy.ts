@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { login, setMobileViewport } from '../../support/methods'
 
-describe('Circumstance list tests', () => {
+describe('Circumstance list mobile tests', () => {
 
   before(() => {
     setMobileViewport();

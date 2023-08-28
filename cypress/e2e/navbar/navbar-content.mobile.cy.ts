@@ -2,7 +2,7 @@
 
 import { login, openPage, setMobileViewport } from "cypress/support/methods";
 
-describe('App logout tests', () => {
+describe('Navbar content mobile tests', () => {
 
   before(() => {
     setMobileViewport();
