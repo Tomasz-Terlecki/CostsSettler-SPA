@@ -12,3 +12,8 @@ export const login = () => {
   cy.get('#password').type('password');
   cy.get('#kc-login').click()
 };
+
+export const setMobileViewport = () => {
+  // iPhone 13 viewport
+  cy.viewport(390, 844);
+}
