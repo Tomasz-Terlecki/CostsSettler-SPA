@@ -41,7 +41,7 @@
         (change)="debtorSelected($event)"
       >
         <option selected>-- Choose --</option>
-        <option *ngFor="let user of users" [value]="user.id">
+        <option id="user-{{idx}}" *ngFor="let user of users; let idx = index" [value]="user.id">
           {{ user.firstName }} {{ user.lastName }}
         </option>
       </select>
