@@ -1,11 +1,15 @@
 /// <reference types="cypress" />
-import { login, setMobileViewport } from '../../support/methods'
+import { getRandomInt, login, registerTestUsers, setMobileViewport } from '../../support/methods'
 
 describe('Circumstance list mobile tests', () => {
 
-  before(() => {
+  let random = getRandomInt(100000);
+  let emailPrefix = 'circumstancelist.mobile' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
     setMobileViewport();
-    login();
+    login(emailPrefix);
     cy.visit('http://costssettler.com/circumstances');
   })
 

@@ -1,12 +1,16 @@
 /// <reference types="cypress" />
-import { addExampleCircumstance, currentDay, currentMonth, currentYear, login, openPage, setMobileViewport } from '../../support/methods'
+import { addExampleCircumstance, getRandomInt, login, openPage, registerTestUsers, registerTestUsersMobile, setMobileViewport } from 'cypress/support/methods';
 
 describe('Existing circumstance form tests', () => {
 
-  before(() => {
+  let random = getRandomInt(100000);
+  let emailPrefix = 'existingcircumstanceform.mobile' + random.toString();
+
+  before(() => {   
     setMobileViewport();
-    login();
-    addExampleCircumstance();
+    registerTestUsers(emailPrefix, random.toString());
+    login(emailPrefix);
+    addExampleCircumstance(random.toString() + '1' + ' ' + random.toString() + '1');
   })
 
   beforeEach(() => {
@@ -23,13 +27,13 @@ describe('Existing circumstance form tests', () => {
 
   it('Adding circumstance form test', () => {
     cy.get('#amountInput')
-      .should('be.disabled');
+      .should('be.visible');
     cy.get('#descriptionInput')
-      .should('be.disabled');
+      .should('be.visible');
     cy.get('#dateInput')
-      .should('be.disabled');
+      .should('be.visible');
     cy.get('#timeInput')
-      .should('be.disabled');
+      .should('be.visible');
   });
 
 });

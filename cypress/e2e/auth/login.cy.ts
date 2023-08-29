@@ -1,6 +1,15 @@
 /// <reference types="cypress" />
 
+import { getRandomInt, registerTestUsers } from "cypress/support/methods";
+
 describe('App login test', () => {
+
+  let random = getRandomInt(100000);
+  let emailPrefix = 'login' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+  })
 
   beforeEach(() => {
     cy.clearLocalStorage();
@@ -48,7 +57,7 @@ describe('App login test', () => {
 
 
   it('Valid credentials', () => {
-    cy.get('#username').type('test@gmail.com')
+    cy.get('#username').type(emailPrefix + '@gmail.com')
     cy.get('#password').type('password')
     cy.get('#kc-login').click();
 

@@ -1,8 +1,15 @@
 /// <reference types="cypress" />
 
-import { setMobileViewport } from "cypress/support/methods";
+import { getRandomInt, registerTestUsers, setMobileViewport } from "cypress/support/methods";
 
 describe('App login mobile test', () => {
+
+  let random = getRandomInt(100000);
+  let emailPrefix = 'login.mobile' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+  })
 
   beforeEach(() => {
     setMobileViewport();
@@ -52,7 +59,7 @@ describe('App login mobile test', () => {
 
 
   it('Valid credentials', () => {
-    cy.get('#username').type('test@gmail.com')
+    cy.get('#username').type(emailPrefix + '@gmail.com')
     cy.get('#password').type('password')
     cy.get('#kc-login').click();
 

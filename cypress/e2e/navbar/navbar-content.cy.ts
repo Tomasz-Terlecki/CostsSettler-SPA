@@ -1,11 +1,15 @@
 /// <reference types="cypress" />
 
-import { login, openPage } from "cypress/support/methods";
+import { getRandomInt, login, openPage, registerTestUsers } from "cypress/support/methods";
 
 describe('Navbar content tests', () => {
 
-  before(() => {
-    login();
+  let random = getRandomInt(100000);
+  let emailPrefix = 'navbar' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix, random.toString());
+    login(emailPrefix);
   })
 
   beforeEach(() => {
@@ -22,7 +26,7 @@ describe('Navbar content tests', () => {
     cy.get('#logo-img').should('be.visible');
     cy.get('#name-text')
       .should('be.visible')
-      .should('contain', 'Test Test');
+      .should('contain', random.toString() + ' ' +  random.toString());
     cy.get('#logout-button')
       .should('be.visible')
       .should('contain', 'Logout');

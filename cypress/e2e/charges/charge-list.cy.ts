@@ -1,10 +1,15 @@
+import { getRandomInt, registerTestUsers } from 'cypress/support/methods';
 /// <reference types="cypress" />
 import { login, openPage } from '../../support/methods'
 
 describe('Charge list tests', () => {
 
-  before(() => {
-    login();
+  let random = getRandomInt(100000);
+  let emailPrefix = 'chargelist' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+    login(emailPrefix);
   })
 
   beforeEach(() => {

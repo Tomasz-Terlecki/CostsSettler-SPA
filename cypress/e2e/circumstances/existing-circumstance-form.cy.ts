@@ -1,11 +1,16 @@
+import { getRandomInt, registerTestUsers } from 'cypress/support/methods';
 /// <reference types="cypress" />
 import { addExampleCircumstance, currentDay, currentMonth, currentYear, login, openPage } from '../../support/methods'
 
 describe('Existing circumstance form tests', () => {
 
-  before(() => {
-    login();
-    addExampleCircumstance();
+  let random = getRandomInt(100000);
+  let emailPrefix = 'existingcircumstanceform' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix, random.toString());
+    login(emailPrefix);
+    addExampleCircumstance(random.toString() + '1' + ' ' + random.toString() + '1');
   })
 
   beforeEach(() => {

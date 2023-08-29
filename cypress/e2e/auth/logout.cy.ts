@@ -1,11 +1,18 @@
 /// <reference types="cypress" />
 
-import { login } from "cypress/support/methods";
+import { login, getRandomInt, registerTestUsers } from "cypress/support/methods";
 
 describe('App logout tests', () => {
 
+  let random = getRandomInt(100000);
+  let emailPrefix = 'logout' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+  })
+
   beforeEach(() => {
-    login();
+    login(emailPrefix);
   })
   
   it('Logout from app', () => {

@@ -1,13 +1,16 @@
 /// <reference types="cypress" />
 
-import { login, openPage, setMobileViewport } from "cypress/support/methods";
+import { getRandomInt, login, openPage, registerTestUsers, registerTestUsersMobile, setMobileViewport } from "cypress/support/methods";
 
 describe('Navbar content mobile tests', () => {
 
-  before(() => {
-    setMobileViewport();
-    login();
-  });
+  let random = getRandomInt(100000);
+  let emailPrefix = 'navbar.mobile' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix, random.toString());
+    login(emailPrefix);
+  })
 
   beforeEach(() => {
     openPage('http://costssettler.com/');
@@ -30,7 +33,7 @@ describe('Navbar content mobile tests', () => {
     cy.get('#logo-img').should('be.visible');
     cy.get('#name-text')
       .should('be.visible')
-      .should('contain', 'Test Test');
+      .should('contain', random.toString() + ' ' +  random.toString());
     cy.get('#logout-button')
       .should('be.visible')
       .should('contain', 'Logout');

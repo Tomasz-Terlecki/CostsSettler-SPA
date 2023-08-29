@@ -11,8 +11,6 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on: any, config: any) {
       on('before:run', (details: any) => {
-        openPage('http://costssettler.com/');
-        cy.
       })
     },
     baseUrl: "http://costssettler.com/",

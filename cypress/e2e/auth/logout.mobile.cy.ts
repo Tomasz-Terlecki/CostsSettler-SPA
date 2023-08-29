@@ -1,12 +1,19 @@
 /// <reference types="cypress" />
 
-import { login, setMobileViewport } from "cypress/support/methods";
+import { getRandomInt, login, registerTestUsers, setMobileViewport } from "cypress/support/methods";
 
 describe('App logout mobile tests', () => {
 
+  let random = getRandomInt(100000);
+  let emailPrefix = 'logout.mobile' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+  })
+  
   beforeEach(() => {
     setMobileViewport();
-    login();
+    login(emailPrefix);
   })
   
   it('Logout from app', () => {

@@ -1,10 +1,14 @@
 /// <reference types="cypress" />
-import { login, openPage } from '../../support/methods'
+import { getRandomInt, login, openPage, registerTestUsers } from '../../support/methods'
 
 describe('Circumstance list tests', () => {
 
-  before(() => {
-    login();
+  let random = getRandomInt(100000);
+  let emailPrefix = 'circumstancelist' + random.toString();
+
+  before(() => {   
+    registerTestUsers(emailPrefix);
+    login(emailPrefix);
   })
 
   beforeEach(() => {
