@@ -1,3 +1,5 @@
+import { openPage } from "cypress/support/methods";
+
 const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
@@ -8,6 +10,10 @@ module.exports = defineConfig({
   },
   e2e: {
     setupNodeEvents(on: any, config: any) {
+      on('before:run', (details: any) => {
+        openPage('http://costssettler.com/');
+        cy.
+      })
     },
     baseUrl: "http://costssettler.com/",
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
@@ -15,6 +21,7 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000,
     pageLoadTimeout: 20000,
     viewportHeight: 1080,
+    sourceMap: false,
     viewportWidth: 1920,
     testIsolation: false,
     numTestsKeptInMemory: 0,
