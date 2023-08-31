@@ -1,6 +1,6 @@
 import { getRandomInt, registerTestUsers } from 'cypress/support/methods';
 /// <reference types="cypress" />
-import { addExampleCircumstance, currentDay, currentMonth, currentYear, login, openPage } from '../../support/methods'
+import { addExampleCircumstance, login, openPage } from '../../support/methods'
 
 describe('Existing circumstance form tests', () => {
 

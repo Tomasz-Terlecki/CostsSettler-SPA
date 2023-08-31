@@ -1,13 +1,26 @@
-export function getRandomInt(max: number) {
+/**
+ * Creates random integer from 0 to 'max'.
+ * @param max maximum value of created integer.
+ * @returns random integer from 0 to 'max'.
+ */
+export function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
 }
 
+/**
+ * Opens page of given url.
+ * @param pageUrl url to open.
+ */
 export const openPage = (pageUrl: any) => {
   cy.intercept('GET', pageUrl).as('getData');
   cy.visit(pageUrl);
   cy.wait('@getData');
 };
 
+/**
+ * Logs user to application.
+ * @param emailPrefix user's email prefix.
+ */
 export const login = (emailPrefix: string) => {
   cy.clearLocalStorage();
   cy.clearAllCookies();
@@ -17,14 +30,17 @@ export const login = (emailPrefix: string) => {
   cy.get('#kc-login').click()
 };
 
+/**
+ * Sets mobile screen dimensions.
+ */
 export const setMobileViewport = () => {
   // iPhone 13 viewport
   cy.viewport(390, 844);
 }
 
-export const currentYear = (): string => new Date().getFullYear().toString();
+const currentYear = (): string => new Date().getFullYear().toString();
 
-export const currentMonth = (): string => {
+const currentMonth = (): string => {
   let month = (new Date().getMonth() + 1).toString();
   month = month.length === 1 
     ? '0' + month
@@ -32,7 +48,7 @@ export const currentMonth = (): string => {
   return month;
 };
 
-export const currentDay = (): string => {
+const currentDay = (): string => {
   let day = new Date().getDate().toString();
   day = day.length === 1 
     ? '0' + day
@@ -40,6 +56,10 @@ export const currentDay = (): string => {
   return day;
 }
 
+/**
+ * Adds new example circumstance.
+ * @param debtorName circumstance's debtor name.
+ */
 export const addExampleCircumstance = (debtorName: string) => {
   openPage('http://costssettler.com/circumstance/00000000-0000-0000-0000-000000000000');
   cy.get('#amountInput').type('100');
@@ -53,6 +73,11 @@ export const addExampleCircumstance = (debtorName: string) => {
   cy.get('.save-button').click();
 }
 
+/**
+ * Registers new test users.
+ * @param emailPrefix users email prefix to set.
+ * @param name users names.
+ */
 export const registerTestUsers = (emailPrefix: string, name?: string) => {
   cy.clearLocalStorage();
   cy.clearAllCookies();
@@ -78,7 +103,11 @@ export const registerTestUsers = (emailPrefix: string, name?: string) => {
   cy.get('#logout-button').click();
 }
 
-
+/**
+ * Registers new test users in mobile view.
+ * @param emailPrefix users email prefix to set.
+ * @param name users names.
+ */
 export const registerTestUsersMobile = (emailPrefix: string, name?: string) => {
   cy.clearLocalStorage();
   cy.clearAllCookies();
