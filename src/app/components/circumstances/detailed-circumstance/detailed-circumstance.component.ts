@@ -26,7 +26,7 @@ export class DetailedCircumstanceComponent implements OnInit {
   /** Form of circumstance. */
   circumstanceForm!: FormGroup;
   /** Users list for dropdown. */
-  users!: UserForListDto[];
+  users: UserForListDto[] = [];
   /** Debtors selected. */
   selectedDebtors: UserForListDto[] = [];
 
@@ -54,10 +54,7 @@ export class DetailedCircumstanceComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.mode === 'read') {
-      this.getCircumstance();
-    }
-    this.getUsers();
+    this.getData();
   }
   
   /**
@@ -79,9 +76,9 @@ export class DetailedCircumstanceComponent implements OnInit {
   }
 
   /**
-   * Gets users from database and sets in 'users'.
+   * Gets data from database.
    */
-  getUsers(): void {
+  getData(): void {
     this.usersService.get({})
       .subscribe({
         next: (res) => {
@@ -89,6 +86,10 @@ export class DetailedCircumstanceComponent implements OnInit {
           const loggedUserIndex = this.users
             .findIndex(user => user.id === this.authService.currentUser?.id);
           this.users.splice(loggedUserIndex, 1);
+
+          if (this.mode === 'read') {
+            this.getCircumstance();
+          }
         },
         error: (err) => {
           console.error(err);

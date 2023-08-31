@@ -86,7 +86,7 @@ export class ChargeComponent {
         },
         error: (err) => { 
           console.error(err);
-          this.toastrService.error('Accepting charge failed')
+          this.toastrService.error('Rejecting charge failed')
         }
       });
   }
