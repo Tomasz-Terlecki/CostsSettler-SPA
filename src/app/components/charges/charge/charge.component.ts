@@ -7,20 +7,32 @@ import { ChargeForListDto } from 'src/app/models/dtos/charge-for-list.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChargesService } from 'src/app/services/charges.service';
 
+/**
+ * Component that represents single charge on charge list.
+ */
 @Component({
   selector: 'app-charge',
   templateUrl: './charge.component.html',
   styleUrls: ['./charge.component.scss']
 })
 export class ChargeComponent {
+  /** Charge to display. */
   @Input() charge!: ChargeForListDto;
+  /** Event sent when charge is changed. */
   @Output() chargeChanged = new EventEmitter<void>();
 
+  /**
+   * Creates new ChargeComponent instance.
+   * @param authService Auth management service.
+   * @param chargesService Charges management service.
+   * @param toastrService Toastr management service.
+   */
   constructor(
     private authService: AuthService, 
     private chargesService: ChargesService,
     private toastrService: ToastrService) {}
   
+  /** Returns information if voting is enabled. */
   get isVoteEnabled(): boolean {
     if (this.charge.chargeStatus === ChargeStatus.Settled ||
         this.charge.circumstanceStatus === CircumstanceStatus.PartiallySettled ||
@@ -31,6 +43,7 @@ export class ChargeComponent {
     return this.charge.debtorId === this.authService.currentUser?.id;
   }
 
+  /** Returns information if settling charge is enabled. */
   get isSettleEnabled(): boolean {
     if (this.charge.chargeStatus !== ChargeStatus.Accepted ||
         this.charge.circumstanceStatus !== CircumstanceStatus.Accepted && 
@@ -40,6 +53,9 @@ export class ChargeComponent {
     return this.charge.creditorId === this.authService.currentUser?.id;
   }
 
+  /**
+   * Accepts charge, creates appropriate toastr.
+   */
   acceptCharge(): void {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Accept)
       .subscribe({
@@ -56,6 +72,9 @@ export class ChargeComponent {
       });
   }
   
+  /**
+   * Rejects charge, creates appropriate toastr.
+   */
   rejectCharge(): void {
     this.chargesService.voteForCharge(this.charge.id, ChargeVote.Reject)
       .subscribe({
@@ -72,6 +91,9 @@ export class ChargeComponent {
       });
   }
 
+  /**
+   * Settles charge, creates appropriate toastr.
+   */
   settleCharge(): void {
     this.chargesService.settleCharge(this.charge.id)
       .subscribe({
@@ -88,6 +110,10 @@ export class ChargeComponent {
       });
   }
 
+  /**
+   * Sets border class for component, depending on charge status.
+   * @returns object with classes to be set or not.
+   */
   setCardClass(): any {
     return {
       'border-color-rejected': this.charge.chargeStatus === ChargeStatus.Rejected,
@@ -95,6 +121,10 @@ export class ChargeComponent {
     };
   }
 
+  /**
+   * Sets background class for component, depending on charge status.
+   * @returns object with classes to be set or not.
+   */
   setCardHeaderClass(): any {
     return {
       'background-rejected': this.charge.chargeStatus === ChargeStatus.Rejected,

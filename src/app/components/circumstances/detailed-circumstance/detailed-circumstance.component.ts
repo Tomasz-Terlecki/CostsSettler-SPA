@@ -10,22 +10,40 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CircumstancesService } from 'src/app/services/circumstances.service';
 import { UsersService } from 'src/app/services/users.service';
 
+/**
+ * Component that represents circumstance with details.
+ */
 @Component({
   selector: 'app-detailed-circumstance',
   templateUrl: './detailed-circumstance.component.html',
   styleUrls: ['./detailed-circumstance.component.scss']
 })
 export class DetailedCircumstanceComponent implements OnInit {
+  /** Mode of component. */
   mode: 'add'|'read' = 'read';
+  /** Circumstance to display. */
   circumstance!: Circumstance;
+  /** Form of circumstance. */
   circumstanceForm!: FormGroup;
+  /** Users list for dropdown. */
   users!: UserForListDto[];
+  /** Debtors selected. */
   selectedDebtors: UserForListDto[] = [];
 
+  /** Is form readonly or modifiable. */
   get readonly() {
     return this.mode === 'read';
   }
 
+  /**
+   * Creates new DetailedCircumstanceComponent instance
+   * @param router Angular router.
+   * @param route Angular route representation.
+   * @param circumstancesService Circumstances management service.
+   * @param toastrService Toastr management service.
+   * @param usersService Users management service.
+   * @param authService Auth management service.
+   */
   constructor(private router: Router, private route: ActivatedRoute, private circumstancesService: CircumstancesService,
     private toastrService: ToastrService, private usersService: UsersService, private authService: AuthService
   ) {
@@ -42,6 +60,9 @@ export class DetailedCircumstanceComponent implements OnInit {
     this.getUsers();
   }
   
+  /**
+   * Gets circumstance to display and saves in 'circumstance'.
+   */
   getCircumstance(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.circumstancesService.getById(id!)
@@ -57,6 +78,9 @@ export class DetailedCircumstanceComponent implements OnInit {
       })
   }
 
+  /**
+   * Gets users from database and sets in 'users'.
+   */
   getUsers(): void {
     this.usersService.get({})
       .subscribe({
@@ -73,7 +97,45 @@ export class DetailedCircumstanceComponent implements OnInit {
       });
   }
 
-  setForm(): void {
+  /**
+   * Debtor is selected.
+   * @param event Representation of selected debtor.
+   */
+  debtorSelected(event: any) {
+    const userId = event.target.value;
+    this.addDebtor(userId);
+  }
+
+  /**
+   * Debtor is removed. Removes debtor from selected debtors list.
+   * @param userId Debtor id to remove from list.
+   */
+  removeDebtor(userId: string) {
+    const indexToDelete = this.selectedDebtors.findIndex(user => user.id == userId);
+    const user = this.selectedDebtors[indexToDelete];
+    this.users.push(user);
+    this.selectedDebtors.splice(indexToDelete, 1);
+  }
+
+  /**
+   * Maps form to circumstance and creates new.
+   */
+  addCircumstance(): void {
+    const circumstance = this.getFromForm();
+    this.circumstancesService.add(circumstance)
+      .subscribe({
+        next: () => {
+          this.toastrService.success('Circumstance adding succeeded');
+          this.router.navigate(['/circumstances']);
+        },
+        error: (err) => {
+          console.error(err);
+          this.toastrService.error('Circumstance adding failed');
+        }
+      })
+  }
+
+  private setForm(): void {
     this.circumstanceForm = new FormGroup({
       description: new FormControl<string>('', Validators.required),
       totalAmount: new FormControl<number>(0, Validators.required),
@@ -82,7 +144,7 @@ export class DetailedCircumstanceComponent implements OnInit {
     })
   }
 
-  setCircumstanceInForm(circumstance: Circumstance): void {
+  private setCircumstanceInForm(circumstance: Circumstance): void {
     this.circumstanceForm.controls['description'].setValue(circumstance.description);
     this.circumstanceForm.controls['totalAmount'].setValue(circumstance.totalAmount);
     this.circumstanceForm.controls['date'].setValue(formatDate(circumstance.dateTime, 'yyyy-MM-dd', 'en'));
@@ -104,43 +166,6 @@ export class DetailedCircumstanceComponent implements OnInit {
     }
   }
 
-  debtorSelected(event: any) {
-    const userId = event.target.value;
-    this.addDebtor(userId);
-  }
-
-  addDebtor(userId: string) {
-    const user = this.users.find(user => user.id === userId);
-    if (user) {
-      this.selectedDebtors.push(user);
-      const indexToDelete = this.users.findIndex(u => u.id === user.id)
-      this.users.splice(indexToDelete, 1);
-    }
-  }
-
-  removeDebtor(userId: string) {
-    const indexToDelete = this.selectedDebtors.findIndex(user => user.id == userId);
-    const user = this.selectedDebtors[indexToDelete];
-    this.users.push(user);
-    this.selectedDebtors.splice(indexToDelete, 1);
-  }
-
-  addCircumstance(): void {
-    const circumstance = this.getFromForm();
-    this.circumstancesService.add(circumstance)
-      .subscribe({
-        next: () => {
-          this.toastrService.success('Circumstance adding succeeded');
-          this.router.navigate(['/circumstances']);
-        },
-        error: (err) => {
-          console.error(err);
-          this.toastrService.error('Circumstance adding failed');
-        }
-      })
-  }
-
-
   private getFromForm(): CircumstanceForAddDto {
     let circumstance = this.circumstanceForm.value as CircumstanceForAddDto;
     circumstance.debtorsIds = this.selectedDebtors.map(debtor => debtor.id);
@@ -150,6 +175,15 @@ export class DetailedCircumstanceComponent implements OnInit {
     }
 
     return circumstance;
+  }
+
+  private addDebtor(userId: string) {
+    const user = this.users.find(user => user.id === userId);
+    if (user) {
+      this.selectedDebtors.push(user);
+      const indexToDelete = this.users.findIndex(u => u.id === user.id)
+      this.users.splice(indexToDelete, 1);
+    }
   }
 
 }
