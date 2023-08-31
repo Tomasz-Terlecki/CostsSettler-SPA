@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { addExampleCircumstance, getRandomInt, login, openPage, registerTestUsers, registerTestUsersMobile, setMobileViewport } from 'cypress/support/methods';
+import { addExampleCircumstance, getRandomInt, login, openPage, registerTestUsersMobile, setMobileViewport } from 'cypress/support/methods';
 
 describe('Existing circumstance form tests', () => {
 
@@ -8,7 +8,7 @@ describe('Existing circumstance form tests', () => {
 
   before(() => {   
     setMobileViewport();
-    registerTestUsers(emailPrefix, random.toString());
+    registerTestUsersMobile(emailPrefix, random.toString());
     login(emailPrefix);
     addExampleCircumstance(random.toString() + '1' + ' ' + random.toString() + '1');
   })
