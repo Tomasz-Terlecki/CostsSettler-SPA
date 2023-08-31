@@ -1,3 +1,6 @@
+/**
+ * Status of charge.
+ */
 export enum ChargeStatus {
   None = 'None',
   New = 'New',

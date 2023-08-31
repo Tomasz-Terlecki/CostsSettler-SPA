@@ -22,6 +22,11 @@ import { DetailedCircumstanceComponent } from './components/circumstances/detail
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from './services/users.service';
 
+/**
+ * Initializes Keycloak instance on application startup.
+ * @param keycloak keycloak service used for auth managment.
+ * @returns a function configuring keycloak service instance.
+ */
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
@@ -38,6 +43,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     });
 }
 
+/**
+ * Main app module.
+ */
 @NgModule({
   declarations: [
     AppComponent,

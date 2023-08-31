@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
+/**
+ * Main Angular component.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

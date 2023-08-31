@@ -8,9 +8,16 @@ import {
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
+/**
+ * Interceptor that adds token in Authorization header.
+ */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
+  /**
+   * Creates new TokenInterceptor instance.
+   * @param authService Service that manages authentication.
+   */
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

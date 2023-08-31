@@ -38,6 +38,9 @@ const routes: Routes = [
   },
 ];
 
+/**
+ * Base routing module class.
+ */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

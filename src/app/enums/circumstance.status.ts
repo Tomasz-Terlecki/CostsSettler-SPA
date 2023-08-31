@@ -1,3 +1,6 @@
+/**
+ * Status of circumstance.
+ */
 export enum CircumstanceStatus {
   None = 'None',
   New = 'New',
